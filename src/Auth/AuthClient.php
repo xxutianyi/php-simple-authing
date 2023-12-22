@@ -50,7 +50,7 @@ class AuthClient
         $url = $this->options->appHost . "/oidc/token/revocation";
         $body = [
             'client_id' => $this->options->appId,
-            'client_secret' => $this->options->appId,
+            'client_secret' => $this->options->appSecret,
             'token' => $token
         ];
 
