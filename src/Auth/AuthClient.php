@@ -14,7 +14,7 @@ class AuthClient
         $this->options = $options;
     }
 
-    public function loginUrl(string $scope = "openid profile", string $state = "none", array $restParams = []): string
+    public function buildAuthorizeUrl(string $scope = "openid profile", string $state = "none", array $restParams = []): string
     {
         $baseUrl = $this->options->appHost . "/oidc/auth";
         $query = [
@@ -31,13 +31,14 @@ class AuthClient
         return $baseUrl . "?" . http_build_query($query);
     }
 
-    public function getTokenByCode(string $code)
+    public function getAccessTokenByCode(string $code)
     {
         $url = $this->options->appHost . "/oidc/token";
         $body = [
             'client_id' => $this->options->appId,
             'client_secret' => $this->options->appSecret,
             'redirect_uri' => $this->options->redirectUri,
+            'grant_type' => 'authorization_code',
             'code' => $code
         ];
 
@@ -46,7 +47,7 @@ class AuthClient
 
     public function revokeToken(string $token)
     {
-        $url = $this->options->appHost . "/oidc/token";
+        $url = $this->options->appHost . "/oidc/token/revocation";
         $body = [
             'client_id' => $this->options->appId,
             'client_secret' => $this->options->appId,
@@ -56,7 +57,7 @@ class AuthClient
         return SimpleRequest::post($url, [], $body, [], false);
     }
 
-    public function logoutUrl(string $idToken, string $redirectUri, string $state): string
+    public function buildLogoutUrl(string $idToken, string $redirectUri, string $state): string
     {
         $baseUrl = $this->options->appHost . "/oidc/session/end";
         $query = [
@@ -68,18 +69,18 @@ class AuthClient
         return $baseUrl . "?" . http_build_query($query);
     }
 
-    public function getProfile(string $accessToken, bool $withCustomData = false, bool $withIdentities = false, bool $withDepartmentIds = false)
+    public function getUserInfoByAccessToken(string $accessToken, bool $withCustomData = false, bool $withIdentities = false, bool $withDepartmentIds = false)
     {
-        $url = $this->options->appHost . "/oidc/token";
+        $url = $this->options->appHost . "/oidc/me";
         $body = [
             'withCustomData' => $withCustomData,
             'withIdentities' => $withIdentities,
-            'withDepartmentIds' => $withCustomData
+            'withDepartmentIds' => $withCustomData,
         ];
         $headers = [
             'Authorization' => "Bearer $accessToken"
         ];
 
-        return SimpleRequest::post($url, [], $body, $headers);
+        return SimpleRequest::post($url, [], $body, $headers,false);
     }
 }
