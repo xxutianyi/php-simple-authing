@@ -1,5 +1,5 @@
 {
-    "name": "xutianyi/php-simple-authing",
+    "name": "xutianyi/simple-authing",
     "description": "Simple SDK for Authing (authing.cn)",
     "type": "library",
     "license": "MIT",
