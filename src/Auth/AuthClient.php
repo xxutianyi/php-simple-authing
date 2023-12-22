@@ -14,14 +14,14 @@ class AuthClient
         $this->options = $options;
     }
 
-    public function loginUrl(string $state = "", string $nonce = ""): string
+    public function loginUrl(string $scope = "openid profile", string $state = "", string $nonce = ""): string
     {
         $baseUrl = $this->options->appHost . "/oidc/auth";
         $query = [
             'client_id' => $this->options->appId,
             'response_type' => $this->options->responseType,
-            'redirect_uri' => urlencode($this->options->redirectUri),
-            'scope' => $this->options->scope,
+            'redirect_uri' => $this->options->redirectUri,
+            'scope' => $scope,
             'state' => $state,
             'nonce' => $nonce,
             'prompt' => $this->options->prompt,
