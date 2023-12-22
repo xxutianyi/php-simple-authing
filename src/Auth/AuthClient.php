@@ -14,7 +14,7 @@ class AuthClient
         $this->options = $options;
     }
 
-    public function loginUrl(string $scope = "openid profile", string $state = "", string $nonce = ""): string
+    public function loginUrl(string $scope = "openid profile", string $state = "", string $nonce = "", array $restParams = []): string
     {
         $baseUrl = $this->options->appHost . "/oidc/auth";
         $query = [
@@ -24,12 +24,9 @@ class AuthClient
             'scope' => $scope,
             'state' => $state,
             'nonce' => $nonce,
-            'prompt' => $this->options->prompt,
-            'response_mode' => $this->options->responseMode,
-            'tenant_id' => $this->options->tenantId,
-            'login_page_context' => $this->options->loginPageContext,
-            'ext_idp_conn_id' => $this->options->extIdpConnId,
-            'deviceId' => $this->options->deviceId,
+            'prompt' => 'login',
+            'response_mode' => 'query',
+            ...$restParams
         ];
 
         return $baseUrl . "?" . http_build_query($query);
