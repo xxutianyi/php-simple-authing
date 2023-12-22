@@ -45,6 +45,18 @@ class AuthClient
         return SimpleRequest::post($url, [], $body, [], false);
     }
 
+    public function introspectToken(string $token)
+    {
+        $url = $this->options->appHost . "/oidc/token/introspection";
+        $body = [
+            'client_id' => $this->options->appId,
+            'client_secret' => $this->options->appSecret,
+            'token' => $token
+        ];
+
+        return SimpleRequest::post($url, [], $body, [], false);
+    }
+
     public function revokeToken(string $token)
     {
         $url = $this->options->appHost . "/oidc/token/revocation";
@@ -81,6 +93,6 @@ class AuthClient
             'Authorization' => "Bearer $accessToken"
         ];
 
-        return SimpleRequest::post($url, [], $body, $headers,false);
+        return SimpleRequest::post($url, [], $body, $headers, false);
     }
 }
