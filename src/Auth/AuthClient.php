@@ -14,7 +14,7 @@ class AuthClient
         $this->options = $options;
     }
 
-    public function loginUrl(string $scope = "openid profile", string $state = "", string $nonce = "", array $restParams = []): string
+    public function loginUrl(string $scope = "openid profile", string $state = "none", array $restParams = []): string
     {
         $baseUrl = $this->options->appHost . "/oidc/auth";
         $query = [
@@ -23,7 +23,6 @@ class AuthClient
             'redirect_uri' => $this->options->redirectUri,
             'scope' => $scope,
             'state' => $state,
-            'nonce' => $nonce,
             'prompt' => 'login',
             'response_mode' => 'query',
             ...$restParams
