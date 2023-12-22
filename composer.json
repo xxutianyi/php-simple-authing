@@ -1,0 +1,22 @@
+{
+    "name": "xutianyi/php-simple-authing",
+    "description": "Simple SDK for Authing (authing.cn)",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "SimpleAuthing\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "XuTianyi",
+            "email": "xutianyi310@163.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=8.0",
+        "xxutianyi/simple-request": "^1.0"
+    }
+}

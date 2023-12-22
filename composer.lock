@@ -1,0 +1,61 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "0e3e892cea776c7d4781f5c516ac1c4d",
+    "packages": [
+        {
+            "name": "xxutianyi/simple-request",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/xxutianyi/php-simple-request.git",
+                "reference": "404310193f80176a32dbcaac01aad2a59afda36c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/xxutianyi/php-simple-request/zipball/404310193f80176a32dbcaac01aad2a59afda36c",
+                "reference": "404310193f80176a32dbcaac01aad2a59afda36c",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "php": ">=8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "SimpleRequest\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "XuTianyi",
+                    "email": "xutianyi310@163.com"
+                }
+            ],
+            "description": "Simple Request Library",
+            "support": {
+                "issues": "https://github.com/xxutianyi/php-simple-request/issues",
+                "source": "https://github.com/xxutianyi/php-simple-request/tree/v1.0.0"
+            },
+            "time": "2023-12-22T11:56:10+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.6.0"
+}
